@@ -2,8 +2,7 @@ package com.example.crud.domain.product;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.UUID;
+import org.springframework.boot.autoconfigure.web.WebProperties;
 
 @Table(name="product")
 @Entity(name="product")
@@ -13,6 +12,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Product {
+
     @Id @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
@@ -20,11 +20,9 @@ public class Product {
 
     private Integer price_in_cents;
 
-    private Boolean active;
-
-    public Product(RequestProduct requestProduct){
+    public Product(RequestProduct requestProduct) {
         this.name = requestProduct.name();
         this.price_in_cents = requestProduct.price_in_cents();
-        this.active = true;
     }
+
 }
